@@ -16,7 +16,13 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent }
     ]
 },
-{path: 'dash' , component: UserDashboardComponent}
+{path: 'dash' , component: UserDashboardComponent},
+{path: 'admin',
+ loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule),
+ data: {
+   allowedRoles: ['admin']
+ }
+}
 ];
 
 

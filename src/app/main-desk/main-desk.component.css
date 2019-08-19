@@ -1,19 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Lacquer&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Lacquer|Saira+Stencil+One&display=swap');
-.container{
-  width: 100vw;
-  min-height: 100vh;
-  background-image: url('../../assets/background.jpg');
-  background-size: cover;
+.container {
+    width: 100vw;
+    min-height: 100vh;
+    background-image: url('../../assets/background.jpg');
+    background-size: cover;
 }
 
-.header{
-  display: flex;
+.header {
+    display: flex;
 }
-.headerLogo{
-  font-family: 'Saira Stencil One', cursive;
-  font-size: 4rem;
-  margin-left: 20px;
-  color: rgb(246, 169, 169);
-  text-shadow: 2px 2px rgba(182, 182, 182, 0.5);
+
+.headerLogo {
+    font-family: 'Saira Stencil One', cursive;
+    font-size: 4rem;
+    margin-left: 20px;
+    color: rgb(246, 169, 169);
+    text-shadow: 2px 2px rgba(182, 182, 182, 0.5);
+}
+
+#admin {
+    font-size: 5px;
+    color: green;
 }

@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material';
 import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 import { MyserviceService } from './myservice.service';
 import { HttpClientModule } from '@angular/common/http';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatSnackBarModule,
     MatButtonModule,
     FormsModule,  ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({})
   ],
   providers: [MyserviceService],
   bootstrap: [AppComponent]
