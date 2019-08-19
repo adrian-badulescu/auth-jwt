@@ -16,7 +16,7 @@ import { MatButtonModule } from '@angular/material';
 import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 import { MyserviceService } from './myservice.service';
 import { HttpClientModule } from '@angular/common/http';
-import { JwtModule } from '@auth0/angular-jwt';
+import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -35,9 +35,15 @@ import { JwtModule } from '@auth0/angular-jwt';
     MatButtonModule,
     FormsModule,  ReactiveFormsModule,
     HttpClientModule,
-    JwtModule.forRoot({})
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: null,
+        whitelistedDomains: [null],
+        blacklistedRoutes: [null]
+      }
+    })
   ],
-  providers: [MyserviceService],
+  providers: [MyserviceService, JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,4 @@
+import { AuthorizationGuard } from './guards/authorization.guard';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
@@ -9,7 +10,8 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 const routes: Routes = [
 {path: '', redirectTo: 'main', pathMatch: 'full'},
 {
-  path: 'main', component: MainDeskComponent, children:
+  path: 'main', component: MainDeskComponent, 
+   children:
     [
       {path: '', redirectTo: 'login', pathMatch: 'full'},
       { path: 'login', component: LoginComponent },
@@ -17,7 +19,7 @@ const routes: Routes = [
     ]
 },
 {path: 'dash' , component: UserDashboardComponent},
-{path: 'admin',
+{path: 'admin', canActivate: [AuthorizationGuard],
  loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule),
  data: {
    allowedRoles: ['admin']
