@@ -12,23 +12,27 @@ export class RegisterComponent implements OnInit {
 
 
   myForm: FormGroup;
-  successMessage: String = '';
-
-
-  constructor(private _myservice: MyserviceService,
+  successMessage: string = '';
+  disabled: boolean; // slide toggle admin
+  checked: boolean = false; // slide toggle admin
+  color = "warn";
+  constructor(
+    private _myservice: MyserviceService,
     private _router: Router,
     private _activatedRoute: ActivatedRoute) {
-      this.myForm = new FormGroup({
-        email: new FormControl(null, Validators.email),
-        username: new FormControl(null, Validators.required),
-        password: new FormControl(null, Validators.required),
-        cnfpass: new FormControl(null, this.passValidator)
-      });
-      this.myForm.controls.password.valueChanges
+    this.myForm = new FormGroup({
+      email: new FormControl(null, Validators.email),
+      username: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required),
+      cnfpass: new FormControl(null, this.passValidator)
+    });
+    this.myForm.controls.password.valueChanges
       .subscribe(
         x => this.myForm.controls.cnfpass.updateValueAndValidity()
       );
-    }
+  }
+  // convenience getter for easy access to form fields
+  get f() { return this.myForm.controls; }
 
   ngOnInit() {
   }

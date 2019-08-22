@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,10 +14,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material';
 
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 import { MyserviceService } from './myservice.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,7 @@ import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
     MatInputModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatSlideToggleModule,
     FormsModule,  ReactiveFormsModule,
     HttpClientModule,
     JwtModule.forRoot({
@@ -43,7 +48,15 @@ import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
       }
     })
   ],
-  providers: [MyserviceService, JwtHelperService],
+  providers: [
+    MyserviceService,
+    JwtHelperService,
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+  //   {
+  //     provide: MAT_RADIO_DEFAULT_OPTIONS,
+  //     useValue: { color: 'accent' },
+  // }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,10 +1,11 @@
 <div class="container">
-  <div class="headerbar">
-    <span>Travelling World</span>
-  </div>
-  <div class="boom">
-    <h1>Hello {{username}}</h1> <h2>you have successfully logged in using JWT.</h2>
+    <div class="headerbar">
+        <span>Your Funky Shoes Account </span>
+    </div>
+    <div class="boom">
+        <h1>Hello {{username.username}}</h1>
+        <h2>you have successfully logged in using JWT.</h2>
 
-    <button mat-raised-button color="primary" (click)="logout()">Logout</button>
-  </div>
+        <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+    </div>
 </div>
