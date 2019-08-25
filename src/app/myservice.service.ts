@@ -1,8 +1,10 @@
+import { Role } from './user_model/role';
 import { User } from './user_model/user';
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { map } from 'rxjs/operators';
+// import { Role}
 
 
 @Injectable({
@@ -10,10 +12,19 @@ import { map } from 'rxjs/operators';
 })
 export class MyserviceService {
   user: User;
+  // role: Role;
+  admin: Role.Admin;
+  _user: Role.User;
+  role: User['role'];
+
+  @Input() checked: boolean; // slide toggle admin
 
   constructor(private http: HttpClient, private jwtHelperService: JwtHelperService) { }
 
   submitRegister(user: User) {
+    if (this.checked === false) {
+      this.role = this._user;
+    } else { this.role = this.admin;}
     return this.http.post('http://localhost:3000/users/register', user, {
       observe: 'body'
     });
@@ -46,7 +57,7 @@ export class MyserviceService {
     }
 
     // get token from local storage or state management
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('currentUser');
 
     // decode token to read the payload details
     const decodeToken = this.jwtHelperService.decodeToken(token);
@@ -58,7 +69,7 @@ export class MyserviceService {
     }
 
     // check if the user roles is in the list of allowed roles, return true if allowed and false if not allowed
-    return allowedRoles.includes(decodeToken['admin']);
+    return allowedRoles.includes(decodeToken['User']);
   }
 
   logout() {

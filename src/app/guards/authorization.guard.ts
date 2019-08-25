@@ -25,23 +25,23 @@ export class AuthorizationGuard implements CanActivate {
     return isAuthorized;
 
   }
-  // canActivateChild(
-  //   next: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-  //   const allowedRoles = next.data.allowedRoles;
-  //   const isAuthorized = this.authorizationService.isAuthorized(allowedRoles);
+  canActivateChild(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    const allowedRoles = next.data.allowedRoles;
+    const isAuthorized = this.authorizationService.isAuthorized(allowedRoles);
 
-  //   if (!isAuthorized) {
-  //     this.router.navigate(['/main/login']);
-  //   }
+    if (!isAuthorized) {
+      this.router.navigate(['/main/login']);
+    }
 
-  //   return isAuthorized
-  // }
-  // canLoad(
-  //   route: Route,
-  //   segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
-  //   return true;
-  // }
+    return isAuthorized
+  }
+  canLoad(
+    route: Route,
+    segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
+    return true;
+  }
 
   
 }

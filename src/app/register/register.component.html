@@ -26,11 +26,11 @@
                 </mat-form-field>
                 <span *ngIf="isValid('cnfpass')">Password and confirm password should match</span>
             </div>
-            <mat-slide-toggle [disabled]="disabled" [color]="color">Admin ?</mat-slide-toggle>
+            <mat-slide-toggle [color]="color" [checked]="checked" formControlName="role">Admin ?</mat-slide-toggle>
             <div style="margin-top:20px;">
                 <button class="form-btn" (click)="register()">Register</button>
             </div>
-
+            <!-- (change)="onChange()" -->
 
             <div style="text-align: center;">
                 {{successMessage}}
